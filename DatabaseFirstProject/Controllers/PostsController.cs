@@ -15,6 +15,7 @@ namespace DatabaseFirstProject.Controllers
         private BookEntities db = new BookEntities();
 
         // GET: Posts
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Post.ToList());

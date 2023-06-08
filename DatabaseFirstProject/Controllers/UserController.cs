@@ -12,6 +12,7 @@ namespace DatabaseFirstProject.Controllers
     {
         BookEntities _db = new BookEntities();
         // GET: User
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -24,10 +25,12 @@ namespace DatabaseFirstProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Login(Users user)
         {
-            var tryLogin = _db.Users.Where(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
-            if (tryLogin != null)
+            var tryLogin = Convert.ToBoolean(_db.Users.Where(
+                u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault());
+            if (tryLogin)
             {
                 Session["Id"] = user.Id.ToString();
                 Session["UserName"] = user.UserName.ToString();

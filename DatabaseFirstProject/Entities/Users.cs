@@ -11,11 +11,28 @@ namespace DatabaseFirstProject.Entities
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Users
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Ì—ÃÏ «÷«›… «”„ «·„” Œœ„")]
+        [Display(Name = "«”„ «·„” Œœ„")]
         public string UserName { get; set; }
+
+
+        [Required(ErrorMessage = "Ì—ÃÏ «÷«›… «”„ «·„” Œœ„")]
+        [Display(Name = "ﬂ·„… «·„—Ê—")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Ì—ÃÏ «÷«›… «”„ «·„” Œœ„")]
+        [Display(Name = "ﬂ·„… «·„—Ê—")]
+        [DataType(DataType.Password)]
+        [NotMapped]
+        [Compare("Password", ErrorMessage = "ÌÃ» «‰   ÿ«»ﬁ ﬂ·„… «·„—Ê—")]
+        public string RePassword { get; set; }
     }
 }

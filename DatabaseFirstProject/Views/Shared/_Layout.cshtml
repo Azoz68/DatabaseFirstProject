@@ -20,9 +20,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav" style="float:right !important;">
+                    @if (Session["UserName"] != null)
+                    {
+                        <li><p> مرحباً  : @Session["UserName"]</p></li>
+                        <li>@Html.ActionLink("صفحة المنتدى", "Post", "Post")</li>
+                        <li>@Html.ActionLink("تسجيل الخروج", "Logout", "Account")</li>
+                    }
+                    else
+                    {
+
+                        <li>@Html.ActionLink("تسجيل الدخول", "Login", "Account")</li>
+                        <li>@Html.ActionLink("التسجيل", "SignUp", "Account")</li>
+                    }
                 </ul>
             </div>
         </div>
